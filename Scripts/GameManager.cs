@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public int numberCoinDestroyed = 0;
     bool createCoins = true;
     [SerializeField] GameObject coinPrefab;
 
