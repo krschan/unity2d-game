@@ -12,7 +12,6 @@ public class ButtonAnimation : MonoBehaviour
     void Start()
     {
         originalScale = transform.localScale;
-        // Iniciar la animación al comenzar
         StartCoroutine(PulseAnimation());
     }
     
