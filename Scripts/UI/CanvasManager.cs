@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class CanvasManager : MonoBehaviour
 
     [Header("Health UI")]
     [SerializeField] private TextMeshProUGUI healthText;
+
+    [Header("Audio Settings")]
+    [SerializeField] private Slider volumeSlider;
 
     private static CanvasManager instance;
     public static CanvasManager Instance
@@ -28,6 +32,7 @@ public class CanvasManager : MonoBehaviour
     private void Start()
     {
         InitializePauseMenu();
+        LoadVolumeSettings(); // Cargar el volumen al iniciar
     }
 
     private void InitializePauseMenu()
@@ -62,5 +67,20 @@ public class CanvasManager : MonoBehaviour
     public void ClickRestart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // 🎵 Manejo de volumen (guardado y carga)
+    private void LoadVolumeSettings()
+    {
+        if (volumeSlider != null)
+        {
+            volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1.0f);
+        }
+    }
+
+    public void SetVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+        PlayerPrefs.Save();
     }
 }
